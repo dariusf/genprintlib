@@ -1,5 +1,8 @@
 open Ppxlib
-open Caml
+
+#if OCAML_VERSION < (4,12,0)
+  open Caml
+#endif
 
 (*
 extract from compiler call, add to tuple argument to 'print', use to find the cmt file.

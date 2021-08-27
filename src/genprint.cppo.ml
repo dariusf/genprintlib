@@ -718,8 +718,10 @@ and process_cmt modname file=
 
 #if OCAML_VERSION < (4,08,0)
              let changed_str, sign, _env = Typemod.type_structure senv pstr Location.none in
-#else
+#elif OCAML_VERSION < (4,12,0)
              let changed_str, sign, _, _env = Typemod.type_structure senv pstr Location.none in
+#else
+             let changed_str, sign, _, _env = Typemod.type_structure senv pstr in
 #endif
              (* the new signature might expose unabstracted types  *)
              let env = Env.add_signature uniq_mods cmt.cmt_initial_env in
