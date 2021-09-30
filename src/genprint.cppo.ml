@@ -828,7 +828,10 @@ and process_local_cmt modname=
     try
       find_sig modname
     with Not_found->
-      failwith("Genprint: No .cmt file found corresponding to "^modname)
+      try
+        find_sig ("dune__exe__" ^ modname)
+      with Not_found->
+        failwith("Genprint: No .cmt file found corresponding to "^modname)
 
 and module_for_tc p =
   (* Stdlib.Map.Make - really want Stdlib__map.Make *)
